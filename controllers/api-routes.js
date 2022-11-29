@@ -54,3 +54,12 @@ app.delete('/users/:_id', async (req, res) => {
     }
 }); 
 
+// create post route to /api/users/:userId/friends/:friendId to add a new friend to a user's friend list.
+app.post('/users/:_id/friends/:friendId', async (req, res) => {
+    try {
+        const newFriend = await User.findOneAndUpdate({ _id: req.params._id }, { friends: req.params.friendId }); 
+        res.status(200).json(newFriend);
+    } catch (err) {
+        res.status(500).json(err); 
+    }
+});
