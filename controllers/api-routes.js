@@ -42,4 +42,15 @@ app.put('/users/:_id', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
+
+// create delete route to remove user by its _id
+app.delete('/users/:_id', async (req, res) => {
+    try {
+        const deleteUser = await User.findOneAndDelete({_id: req.params._id });
+        res.status(200).json(deleteUser);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}); 
+
