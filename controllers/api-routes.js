@@ -127,3 +127,13 @@ app.delete('/thoughts/:_id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// create post route to create a reaction stored in a single thought's reactions array field
+app.post('/thoughts/:_id/reactions', async (req, res) => {
+    try {
+        const newReaction = await Thought.findOneAndUpdate({ _id: req.params._id }, { reactions: { reactionBody: req.body.reactionBody }});
+        res.status(200).json(newReaction);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
