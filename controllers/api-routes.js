@@ -107,3 +107,13 @@ app.post('/thoughts', async (req, res) => {
         res.status(500).json(err); 
     }
 });
+
+// create put request to thoughts by _id to update thought
+app.put('/thoughts/:_id', async (req, res) => {
+    try {
+        const updateThought = await Thought.findOneAndUpdate({ _id: req.params._id }, { thoughtText: req.body.thoughtText, createdAt: req.body.createdAt });
+        res.status(200).json(updateThought);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
