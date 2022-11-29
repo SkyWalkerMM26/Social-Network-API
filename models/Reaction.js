@@ -12,4 +12,17 @@ const reactionSchema = new Schema(
         type: Date,
         default: Date.now,
     },
-})
+},
+    {
+    toJSON: {
+        getters: true,
+    },
+    id: false,
+});
+
+reactionSchema
+    .get(function () {
+        return this.createdAt.Date.now;
+    }); 
+
+module.exports = reactionSchema;
