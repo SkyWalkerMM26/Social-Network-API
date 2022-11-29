@@ -23,7 +23,8 @@ This application is to build an API for a social network web application where u
 
 ## Usage
 
-Click on the video to see how the application works.
+Click on the link to see a video of how the routes work in Insomnia!
+https://www.youtube.com/watch?v=M3q-65Qxc1Q 
 
 
 ## Questions

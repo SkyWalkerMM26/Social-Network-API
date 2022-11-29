@@ -4,7 +4,6 @@ const Thought = require('../models/Thought');
 const Reaction = require('../models/Reaction');
 
 //get all the users. 
-// api/users
 app.get('/users', async (req, res) => {
     try {
         const getAllUsers = await User.find(); 
