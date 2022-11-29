@@ -34,4 +34,12 @@ app.post('/users', async (req, res) => {
     }
 });
 
-
+// create put request to update a user but its _id
+app.put('/users/:_id', async (req, res) => {
+    try {
+        const updateUser = await User.findOneAndUpdate({_id: req.params._id}, { username: req.body.username, email: req.body.email });
+        res.status(200).json(updateUser);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
