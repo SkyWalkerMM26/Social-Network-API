@@ -24,4 +24,14 @@ app.get('/users/:_id', async (req, res) => {
     }
 });
 
+//create post route to create new user.
+app.post('/users', async (req, res) => {
+    try {
+        const newUser = await User.create({ username: req.body.username, email: req.body.email }); 
+        res.status(200).json(newUser);
+    } catch (err) {
+        res.status(500).json(err); 
+    }
+});
+
 
