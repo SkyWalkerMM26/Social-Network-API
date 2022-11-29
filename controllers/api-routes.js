@@ -73,3 +73,14 @@ app.delete('/users/:_id/friends/:friendId', async (req, res) => {
         res.status(500).json(err); 
     }
 });
+
+// Create get route to thoughts to get all thoughts
+app.get('/thoughts', (req, res) => {
+    Thought.find({}, (err, result) => {
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(500).json({ error: 'Error! Man down!' });
+        }
+    });
+});
