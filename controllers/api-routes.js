@@ -137,3 +137,15 @@ app.post('/thoughts/:_id/reactions', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// create delete route to pull and remove a reaction by the reaction's reactionId value
+app.delete('/thoughts/:_id/:_id', async (req, res) => {
+    try {
+        const deleteReaction = await Thought.findOneAndUpdate({ _id: req.params._id }, { $pull: { reactions: { _id: req.params._id } } }, { new: true });
+        res.status(200).json(deleteReaction);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+module.exports = app; 
