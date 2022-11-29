@@ -63,3 +63,13 @@ app.post('/users/:_id/friends/:friendId', async (req, res) => {
         res.status(500).json(err); 
     }
 });
+
+// create delete route to remove a friend from a user's friend list
+app.delete('/users/:_id/friends/:friendId', async (req, res) => {
+    try {
+        const deleteFriend = await User.findOneAndUpdate({ _id: req.params._id }, { $pull: { friends: req.params.friendId } }, { new: true });
+        res.status(200).json(deleteFriend);
+    } catch (err) {
+        res.status(500).json(err); 
+    }
+});
