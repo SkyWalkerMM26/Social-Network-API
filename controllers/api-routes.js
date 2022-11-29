@@ -84,3 +84,26 @@ app.get('/thoughts', (req, res) => {
         }
     });
 });
+
+// create get route to get a single thought by its _id
+app.get('/thoughts/:_id', async (req, res) => {
+    try {
+        const singleThought = await Thought.findOne({ _id: req.params._id });
+        res.status(200).json(singleThought);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// create post route to create a new thought and udpate it
+app.post('/thoughts', async (req, res) => {
+    try {
+        const newThought = await Thought.create(req.body);
+        
+        const updateUser = await User.findOneAndUpdate({ username: req.body.username }, { $push: { thoughts: newThought } });
+        res.status(200).json(updateUser);
+
+    } catch (err) {
+        res.status(500).json(err); 
+    }
+});
