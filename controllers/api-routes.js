@@ -117,3 +117,13 @@ app.put('/thoughts/:_id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// create delete request to thoughts by _id route to remove a thought by its _id
+app.delete('/thoughts/:_id', async (req, res) => {
+    try {
+        const deleteThought = await Thought.findOneAndDelete({ _id: req.params._id });
+        res.status(200).json(deleteThought);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
