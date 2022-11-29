@@ -17,3 +17,14 @@ const thoughtSchema = new Schema(
         },
         id: false,
     });
+
+thoughtSchema
+    .virtual('reactionCount')
+    .get(function () {
+        const rxnCount = this.reactions.length;
+        return rxnCount;
+    })
+
+const Thought = model('thought', thoughtSchema)
+
+module.exports = Thought;
